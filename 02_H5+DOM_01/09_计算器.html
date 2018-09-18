@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box{border: 2px solid black;width: 400px;height: 400px;margin: auto;}
+    .box1 input{border:2px solid black;width: 350px;height: 60px;margin-left:20px;margin-top: 20px;}
+    .box2{border: 2px solid transparent;width: 350px;height: 270px;margin:auto; margin-top:20px;}
+    .box2 input{width: 60px;height: 60px;border: 2px solid black;margin:14px 0;font-size:30px;}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="box1">
+      <input type="text" id="input">
+    </div>
+    <div class="box2">
+      <form action="">
+        <input type="button" value="1" onclick="jsq(this)">
+        <input type="button" value="2" onclick="jsq(this)">
+        <input type="button" value="3" onclick="jsq(this)">
+        <input type="button" value="4" onclick="jsq(this)">
+        <input type="button" value="5" onclick="jsq(this)">
+        <input type="button" value="6" onclick="jsq(this)">
+        <input type="button" value="7" onclick="jsq(this)">
+        <input type="button" value="8" onclick="jsq(this)">
+        <input type="button" value="9" onclick="jsq(this)">
+        <input type="button" value="0" onclick="jsq(this)">
+        <input type="button" value="+" onclick="jsq(this)">
+        <input type="button" value="-" onclick="jsq(this)">
+        <input type="button" value="=" onclick="jsq(this)">
+        <input type="button" value="C" onclick="jsq(this)">
+      </form>
+    </div>
+  </div>
+  <script>
+    var num=0;
+    var input_obj=document.querySelector('.box1 input[type=text]');
+    console.log(input_obj);
+    var button_obj=document.querySelectorAll('.box input[type=button]');
+    console.log(button_obj);
+   
+   
+
+  </script>
+</body>
+</html>

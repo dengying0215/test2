@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+   .grandfa{width:400px;height:400px;border: 2px solid red;}
+   .father{width:300px;height:300px;border: 2px solid blue;}
+   .son{width:200px;height:200px;border: 2px solid green;}
+  </style>
+</head>
+<body>
+  <!-- 多层嵌套的div -->
+  <div class="grandfa">
+    <div class="father">
+      <div class="son"></div>
+    </div>
+  </div>
+  <script>
+    //事件处理函数
+   function show(event){
+     console.log('事件执行');
+     console.log(event);//目标对象
+     console.log(this);
+   }
+   //对标签添加单击事件
+   var son=document.querySelector('.son');
+   //son.onclick=show;
+   son.addEventListener('click',show,true);
+
+   //给父亲也添加一个单击事件
+   var father=document.querySelector('.father');
+   father.addEventListener('click',show,true);
+  </script>
+</body>
+</html>

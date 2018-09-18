@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=script, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <script>
+    //需求1:把指定的字符串转换成无序列表格式
+    //格式如下:
+    //名字:鲁班七号 职业:射手 血量:60%
+    var str="鲁班七号@射手@60%;后羿@射手@70%;貂蝉@法师@68%;孙悟空@刺客@70%";
+    //使用方法 split(分隔符)
+    var rs1=str.split(';');
+     console.log(rs1);
+    document.write('<ul>');
+      for(key in rs1){
+        console.log(rs1[key]);
+        var rs2=rs1[key].split('@');
+        console.log(rs2);
+        document.write("<li>");
+        document.write("名字:"+rs2[0]+" 职业:"+rs2[1]+" 血量:"+rs2[2]);
+        document.write("</li>"); 
+      }
+    document.write('</ul>');
+    </script>
+
+    <script>
+    //需求2:
+    //写一个函数
+    //把文章中'指定词'用'指定颜色'标记出来
+    var str="北国风光，千里冰封，万里雪飘。望长城内外，惟余莽莽；大河上下，顿失滔滔。(余 通：馀)山舞银蛇，原驰蜡象，欲与天公试比高。(原驰 原作：原驱)须晴日，看红装素裹，分外妖娆。(红装 一作：银装)江山如此多娇，引无数英雄竞折腰。惜秦皇汉武，略输文采；唐宗宋祖，稍逊风骚。一代天骄，成吉思汗，只识弯弓射大雕。俱往矣，数风流人物，还看今朝。";
+    //使用方法 replace(old,new)
+    function mark(article,keyWords,color){
+      //在正则里使用变量
+      var reg=new RegExp(keyWords,'g');
+     return article.replace(reg,"<mark style='background:"+color+"'>"+keyWords+"</mark>");
+    }
+    document.write(mark(str,'一','red'));
+    </script>
+
+  <script>
+  // 需求3:写一个函数:字符串去重
+    var str = "012523406897";
+              //0125346897
+    //方法1
+    var str1="";
+    for(key in str){
+      if(str1.indexOf(str[key])==-1){
+       str1+=str[key];
+      }  
+    } console.log(str1);
+     document.write("<hr>");
+
+      //函数名 distinct(str)
+      //-参数：str 传递的字符串
+      //-功能：给字符串去重
+      //-结果：返回去重的新字符串
+
+     //方法2
+     function distinct(){
+       //1)放一个空盒子,用来存储新的字符串(无重复)
+       var newStr='';
+       //2)依次取(看见依次取就要用循环)旧字符串的元素,然后到新字符串里检验
+       for(var i=0;i<str.length;i++){
+         //i:字符下标 对应的字符 str.charAt(i)
+         var char=str.charAt(i);
+         if(newStr.indexOf(char)==-1){
+           //空盒子里没有该字符,添加进去
+           newStr+=char;
+         }
+       }console.log(newStr);
+     }
+     distinct();
+  </script>
+  
+  <script>
+    // 练习案例1:去除字符串前边的空格
+    var str='     nsaijrfj';
+    //把空格替换成空字符串
+    //replace(/\s/,"");
+    function ltrim(str){
+      return str.replace(/^\s*/g,"");
+    }
+    console.log(str);
+    console.log(ltrim(str));
+    console.log("  ahds   der 123");
+    console.log(ltrim("  ahds   der 123"));
+    // 练习案例2:去除字符串后边的空格
+    function rtrim(str){
+      return str.replace(/\s*$/g,"");
+    }
+    console.log('  saf adf s  ');
+    console.log(rtrim('  saf adf s  '));
+    // 练习案例3:去除字符串两端的空格
+    function strim(str){
+      return str.replace(/^\s*|\s*$/g,"");
+    }
+    console.log(' sjk  dsf  sd ');
+    console.log(strim(' sjk  dsf  sd '));
+    // 练习案例4:去除所有的空格
+    function gtrim(str){
+      return str.replace(/\s/g,"");
+    }
+    console.log(' asd  dfs  dgg ');
+    console.log(gtrim(' asd  dfs  dgg '));
+    // 练习案例5:将英文句子中单词首字母变大写
+      // 可能会用到数组的方法: 
+      // arr.join(分隔符): 指定分隔符把数组元素拼成字符串
+    var str = "life was likes a box of chocolates you never know what you are gonna get!";
+    console.log(str);
+
+    function capitalize(str){
+      //1)分隔字符串 结果是数组
+      var arr=str.split(' ');
+      console.log(arr);
+      //2)依次取数组元素
+      for(key in arr){//key:下标 元素:arr[key]
+        //取首字母:变大写+后面的字符
+        arr[key]=arr[key].charAt(0).toUpperCase()+arr[key].slice(1);//Life
+      }
+      console.log(arr);//数组 转成字符串
+      return arr.join(' ');
+    }
+    console.log(capitalize(str));
+  </script>
+</body>
+</html>

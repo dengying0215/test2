@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- <script src="./jq/jquery-1.9.1.min.js"></script> -->
+  <style>
+    .canvas1{border: 1px solid black;display: inline-block;}
+  </style>
+</head>
+<body>
+  <form action="" name="login">
+    验证码:<input type="text" name='uname'><canvas class="canvas1" width="100" height="60"></canvas>
+     <a href="#" class="btn">点击一下,就换一张</a> <br><br>
+    <input type="button" value="验证" name='ubutton'>
+  </form> 
+  <script>
+      var str='';
+      var canvas1=document.getElementsByClassName('.canvas1');
+      var context=canvas1.getContext('2d');
+      var btn=document.getElementsByClassName('.btn');
+      var uname=document.forms['login']['uname'];
+      var btns=document.forms['login']['ubutton'];
+      function yzm(){
+        str='';
+        var arr=[0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+        for(var i=1;i<=6;i++){
+          var index=Math.floor(Math.random()*(arr.length));
+          console.log(index,arr[index]);
+           str+=arr[index];
+
+        }
+       return str;
+       
+      }
+     context.fillText(str,0,0);
+      
+      btn.click=function(){
+        yzm();
+      }
+
+      btns.click=function(){
+        if(uname.value==str){
+          alert('验证码输入正确');
+        }else{
+          alert('验证码有误,请重新输入');
+        }
+      }
+      
+  
+  </script>
+</body>
+</html>

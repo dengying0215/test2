@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    canvas{border: 1px solid red;width: 300px;height: 300px;margin: 10px;}
+  </style>
+</head>
+<body>
+  <!-- canvas#canvas$*5 -->
+  <canvas id="canvas1"></canvas>
+  <canvas id="canvas2" height="300"></canvas>
+  <canvas id="canvas3" height="300"></canvas>
+  <canvas id="canvas4" height="300"></canvas>
+  <canvas id="canvas5" height="300"></canvas>
+<!-- 绘制直线 -->
+<script>
+  //1)找到画布
+  var canvas1=document.querySelector('#canvas1');
+  //修改宽高,必须修改属性而非样式
+  canvas1.width='300';
+  canvas1.height='300';
+  // console.log('画布宽',canvas1.width);
+  // console.log('画布高',canvas1.height);
+  //2)定义2d的图形类型
+  var context=canvas1.getContext('2d');
+  //3)开始绘制:对context的操作
+  //设定直线起点:moveTo(x,y)
+  context.moveTo(60,60);
+   //设定直线终点:lineTo(x,y)
+  context.lineTo(150,150);
+  context.lineTo(290,60);
+  context.lineTo(60,60);
+  context.lineTo(150,150);
+  //先挑选颜色/样式
+   context.strokeStyle='blue';//描边色
+   context.fillStyle='pink';//填充色
+   context.lineWidth=5;//描边粗细
+   context.lineJoin='round';//圆角顶点
+  //实际绘图
+    context.stroke();
+    context.fill();//填充
+
+   //重新绘制一个线条
+   context.beginPath();//开始新路径
+   context.moveTo(0,200);
+   context.lineTo(260,290);
+   context.lineTo(300,200);
+   context.lineTo(0,200);
+   context.strokeStyle='green';
+   context.fillStyle='lightyellow';
+   context.stroke();
+   context.fill();//填充
+   context.closePath();//闭合路径
+</script>
+
+<!-- 绘制矩形 -->
+<script>
+  var canvas2=document.querySelector('#canvas2'); 
+  var context=canvas2.getContext('2d');
+  //开始绘制矩形 rect(x,y,w,h)
+  context.rect(20,20,100,100);
+  context.strokeStyle='red';
+  context.lineWidth=6;
+  context.fillStyle='steelblue';
+  context.stroke();
+  context.fill();
+
+//第二个矩形 实心的
+  context.fillStyle='pink';
+  context.fillRect(150,20,100,100);
+  
+  //第三个矩形 空心的
+  context.strokeStyle='#888';
+  context.strokeRect(20,150,100,100);
+  
+  //第三个矩形 有描边有填充
+  context.beginPath();
+  context.fillStyle='pink';
+  context.strokeStyle='#888';
+  context.rect(150,150,100,100);
+  context.stroke();
+  context.fill();
+  context.closePath();
+  //清除形状(橡皮擦)
+ // context.clearRect(0,0,80,80);
+</script>
+
+<!-- 绘制圆形 -->
+<script>
+  var canvas3=document.querySelector('#canvas3'); 
+  var context=canvas3.getContext('2d');
+  //开始绘制圆形 arc(x,y,半径,起始角,结束角[,方向])
+  context.arc(100,100,50,0,Math.PI*1,false);
+  context.fillStyle='pink';
+  context.strokeStyle='blue';
+  context.lineWidth=5;
+  context.stroke();
+  context.fill();
+
+  //添加一个完整的圆形
+  context.beginPath();
+  context.arc(100,100,25,0,Math.PI*2,true);
+  context.fillStyle='yellow';
+  context.fill();
+</script>
+  
+<!-- 绘制文字-->
+<script>
+  var canvas4=document.querySelector('#canvas4');
+  var context=canvas4.getContext('2d');
+  //开始绘制文字
+  context.font='30px 微软雅黑';//大小 字体
+  context.textBaseline='top';//基线对齐:top
+  context.fillText('我爱中华人民共和国',0,0);
+  //再添加一行文字  只有描边
+  context.rotate(45*Math.PI/180);//旋转45度
+  context.translate(20,10);//重新定义画布的坐标点位置
+  context.strokeStyle='red';
+  context.strokeText('千里共婵娟',100,60);
+  //撤销旋转(恢复到初始状态)
+  context.rotate(-45*Math.PI/180);//旋转45度
+  context.strokeText('蒹葭苍苍',150,100);//不要旋转
+</script>
+
+<!-- 绘制图片 -->
+<script>
+  var canvas5=document.querySelector('#canvas5');
+  var context=canvas5.getContext('2d');
+  //1)创建图片(加载图片)
+  var myImg=new Image();
+  myImg.src='img/8.jpg';//引入图片地址
+  //2)实际绘制图片:必须等图片加载完才能绘制
+  myImg.onload=function(){
+    context.drawImage(myImg,0,0,300,300);
+  }
+</script>
+</body>
+</html>

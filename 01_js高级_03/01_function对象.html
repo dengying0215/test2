@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+   // 1)声明定义(可以在任意地方调用)
+   //声明提前到最顶端,可以随意访问
+      fun(16,6);//22
+      function fun(arg1,arg2){
+        //函数执行的结构体
+        console.log(arg1+arg2);
+      }
+      fun(5,8);//13
+   // 2)直接量函数(先定义再调用)
+   //声明提前到最顶端,但是赋值留在本地
+      console.log(fun1);//undefined
+      //fun1(7);//报错
+      var fun1=function(arg1){
+        //函数执行的结构体
+        console.log(arg1*arg1);
+      }
+      fun1(6);//36
+   //  3)new关键字创建(不推荐)
+      var fun2=new Function("arg1","arg2","console.log(arg1-arg2)");
+      fun2(5,8);//-3
+  </script>
+</body>
+</html>

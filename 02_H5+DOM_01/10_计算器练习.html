@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #input{width: 270px;height:50px;margin-bottom: 10px;font-size: 30px;text-align: right;padding-right: 10px;}
+    #buttons{border: 1px solid black;width: 280px;}
+    #buttons button{width: 40px;height: 40px;margin: 10px;}
+  </style>
+</head>
+<body>
+  <!-- 布局 -->
+  <input type="text" id="input" value="0" readonly>
+  <div id="buttons">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <button>0</button>
+    <button>C</button>
+    <button>+</button>
+    <button>-</button>
+    <button>=</button>
+  </div>
+  <!-- 添加js代码 -->
+  <script>
+    //需求:实现一个简易的计算器 -->两个数值的运算
+    //需要的参数:
+    var typeName='';//存储运算符 + -
+    var first='';//存储第一个数
+    var input=document.getElementById('input');
+    //分析功能:
+    //功能1:数字按钮:获取按钮上的数字
+    //*若输入框是0:把数字覆盖进去;若非0:把数字追加进去
+    function numBtn(num){
+      console.log('数字按钮',num);
+      //如果上一步点击的运算符,要清空输入框
+                                            
+      if(input.value==0){
+        input.value=num;
+      }else{
+        input.value+=num;
+      }
+    }
+
+    //功能2:运算符按钮:获取运算符号 + - =
+    /*
+      1)若是"+":typeName='+';把第一个数存起来
+      2)若是"-":typeName='-';把第一个数存起来
+      3)若是"=":进行运算
+        若运算符是"+":加法运算
+        若运算符是"-":减法运算
+        运算完成,把结果显示在输入框区
+    */
+    function typeBtn(type){
+      console.log('运算符按钮',type);
+      if(type=='+' || '-'){
+        typeName=type;//存储运算符
+        first=input.value;//存储第一个数
+        document.title=first;//显示到标题里
+      }else{//等号
+        if(typeName=='+'){
+          rs=first+input.value;
+        }else if(typeName=='-'){
+          rs=first-input.value;
+        }
+        //把结果显示到输入框里
+        input.value=rs;
+      }
+    }
+    //功能3:清除按钮 C
+    //*把输入框归零
+    function clearBtn(clear){
+      console.log('清除按钮');
+    }
+    //功能3:综合处理函数:根据值得不同,调用不同的功能效果
+    function init(value){
+      switch(value){
+        case "C":clearBtn(value);break;
+        case "+":typeBtn(value);break;
+        case "-":typeBtn(value);break;
+        case "=":typeBtn(value);break;
+        default:numBtn(value);
+      }
+    }
+    //给按钮添加单击事件:利用事件冒泡
+    var div_obj=document.getElementById('buttons');
+    div_obj.onclick=function(event){
+      // console.log('目标元素',event.target);
+      // console.log('元素标签名',event.target.nodeName);
+      //若目标元素是按钮,继续操作
+      if(event.target.nodeName=='BUTTON'){
+        //按钮上的值
+        var value=event.target.innerText;
+        //调用一下函数 init()
+        init(value);
+      }
+    }
+  </script>
+</body>
+</html>

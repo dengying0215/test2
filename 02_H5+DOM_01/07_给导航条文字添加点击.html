@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+   .navbox{width: 500px;line-height: 40px;border:1px solid red;height: 40px;}
+   .navbox a{float: left;width: 100px;background: yellow;text-decoration: none;text-align: center;color:black;}
+   .navbox a.current{background: skyblue}
+  </style>
+</head>
+<body>
+  <p class="navbox">
+    <a href="#">淘宝</a>
+    <a href="#">京东</a>
+    <a href="#">聚美优品</a>
+    <a href="#">亚马逊</a>
+    <a href="#">唯品会</a>
+  </p>
+  <script>
+    //点击a,添加事件处理
+    var obj_1=document.querySelector('.navbox');
+    var obj_2=document.querySelectorAll('.navbox a');
+    console.log(obj_1);
+    obj_1.onclick=function(){
+      console.log('目标元素',event.target);
+      console.log('this',this);
+     //1)给所有的a,去除current
+     for(var i=0;i<obj_2.length;i++){
+      obj_2[i].classList.remove('current');
+     }
+     //2)给当前的目标a,添加current
+     event.target.classList.add('current');
+    }
+  </script>
+</body>
+</html>
